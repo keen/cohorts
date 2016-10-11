@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cohort Builder Dev Kit by Keen IO</title>
+  <link rel="stylesheet" href="./assets/keen-dashboards.css">
+  <style>
+    .demo-wrapper { padding: 10px 0; }
+  </style>
+
+  <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
+  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../keen-cohort-matrix.css">
+</head>
+<body class="application">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand" href="./">Retention Matrix</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="https://keen.io">Home</a></li>
+          <li><a href="https://keen.io/team">Team</a></li>
+          <li><a href="https://github.com/keenlabs/retention-matrix">Source</a></li>
+          <li><a href="https://users.keen.io">Chat Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <h1>Cohort Matrix</h1>
+    <form class="form-inline" role="form">
+      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5">
+      <select id="select-step-units" class="form-control">
+        <option value="days">Days</option>
+        <option value="weeks" selected="true">Weeks</option>
+      </select>
+      <div class="btn-group">
+        <button type="button" id="build" class="btn btn-default">Build</button>
+      </div>
+    </form>
+
+    <!-- Target Dataviz Elements -->
+    <div id="new-chart-wrapper" class="demo-wrapper"></div>
+    <div id="new-table-wrapper" class="demo-wrapper"></div>
+  </div>
+
+  <!-- Cohort Matrix relies on the Keen IO Analysis + Dataviz SDKs -->
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.1.0.js"></script>
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.js"></script>
+  <script src="../keen-cohort-matrix.js"></script>
+  <script>
+
+  var keenClient = new Keen({
+    projectId: 'YOUR_PROJECT_ID',
+    readKey: 'YOUR_READ_KEY'
+  });
+
+  var cohortChart = new Keen.Dataviz()
+    .el('#new-chart-wrapper')
+    .height(100)
+    .type('line');
+
+  var cohortTable = new Keen.Dataviz()
+    .el('#new-table-wrapper')
+    .type('table');
+
+  document.getElementById('build').onclick = function(e) {
+    e.preventDefault();
+
+    // Intervals input field
+    var intervalsInput = document.getElementById('select-step-intervals');
+    var intervals = parseInt(intervalsInput.value);
+
+    // Units select field
+    var unitsInput = document.getElementById('select-step-units');
+    var units = unitsInput.options[unitsInput.selectedIndex].value;
+
+    // Keen.CohortBuilder.generateDateMatrix();
+    var dateMatrix = generateDateMatrix(units, intervals);
+
+    var queryMatrix = generateCohortQueryMatrix(dateMatrix, function(cohort){
+      return new Keen.Query('funnel', {
+        steps: [
+          {
+            event_collection: 'first_launch',
+            actor_property: 'dpid',
+            filters: [
+              { property_name: 'make', operator: 'eq', property_value: 'Apple' }
+            ],
+            timeframe: cohort.created_at
+          },
+          {
+            event_collection: 'application_opened',
+            actor_property: 'dpid',
+            filters: [
+              { property_name: 'make', operator: 'eq', property_value: 'Apple' }
+            ],
+            timeframe: cohort.current_interval
+          }
+        ]
+      });
+    });
+
+    // Start first chart spinner
+    cohortChart.prepare();
+    // Keen.CohortBuilder.fetchCohortDatasets();
+    fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
+      cohortChart
+        .data(dataset)
+        .height(280)
+        .render();
+
+      cohortTable
+        .data(dataset)
+        .render();
+    });
+  };
+  </script>
+</body>
+</html>
