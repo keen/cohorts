@@ -1,0 +1,13 @@
+#new-table-wrapper .keen-dataviz-table th,
+#new-table-wrapper .keen-dataviz-table td {
+  border: 1px solid #E7E7E7;
+  text-align: center !important;
+}
+#new-table-wrapper .keen-dataviz-table tr th:first-child,
+#new-table-wrapper .keen-dataviz-table tr td:first-child {
+  text-align: left !important;
+}
+#new-table-wrapper .keen-dataviz-table tr:nth-child(even) td,
+#new-table-wrapper .keen-dataviz-table tr:hover td {
+  background: transparent none;
+}
