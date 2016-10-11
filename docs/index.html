@@ -77,7 +77,8 @@
     .library('cohort-builder')
     .type('matrix');
 
-  document.getElementById('build').onclick = function(e) {
+  var btn = document.getElementById('build');
+  btn.onclick = function(e) {
     e.preventDefault();
 
     // Start first chart spinner
@@ -129,6 +130,8 @@
         .render();
     });
   };
+
+  btn.click();
   </script>
 </body>
 </html>
