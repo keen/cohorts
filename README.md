@@ -42,7 +42,7 @@ Cohort Builder, powered by the Keen IO Analysis and Dataviz SDKs
     var cohortTable = new Keen.Dataviz()
       .el('#cohort-table')
       .library('cohort-builder')
-      .type('table');
+      .type('matrix');
 
     var dateMatrix = Keen.CohortBuilder.generateDateMatrix('weeks', 5);
     var queryMatrix = Keen.CohortBuilder.generateCohortQueryMatrix(dateMatrix, function(cohort){
