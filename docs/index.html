@@ -11,7 +11,7 @@
 
   <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
   <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/keen-cohort-matrix.css">
+  <link rel="stylesheet" href="./assets/keen-cohort-builder.css">
 </head>
 <body class="application">
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -38,8 +38,8 @@
   <div class="container-fluid">
     <h1>Cohort Builder</h1>
     <form class="form-inline" role="form">
-      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5">
-      <select id="select-step-units" class="form-control">
+      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5" disabled="disabled" title="Disabled for demo purposes">
+      <select id="select-step-units" class="form-control" disabled="disabled" title="Disabled for demo purposes">
         <option value="days">Days</option>
         <option value="weeks" selected="true">Weeks</option>
       </select>
@@ -56,7 +56,10 @@
   <!-- Cohort Matrix relies on the Keen IO Analysis + Dataviz SDKs -->
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.1.0.js"></script>
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.js"></script>
-  <script src="./assets/keen-cohort-matrix.js"></script>
+  <script src="./assets/keen-cohort-builder.js"></script>
+
+  <!-- Stub requests for demo purposes -->
+  <script src="./assets/keen-cohort-example.js"></script>
   <script>
 
   var keenClient = new Keen({
@@ -71,10 +74,15 @@
 
   var cohortTable = new Keen.Dataviz()
     .el('#new-table-wrapper')
-    .type('table');
+    .library('cohort-builder')
+    .type('matrix');
 
   document.getElementById('build').onclick = function(e) {
     e.preventDefault();
+
+    // Start first chart spinner
+    cohortChart.prepare();
+    cohortTable.destroy();
 
     // Intervals input field
     var intervalsInput = document.getElementById('select-step-intervals');
@@ -84,10 +92,9 @@
     var unitsInput = document.getElementById('select-step-units');
     var units = unitsInput.options[unitsInput.selectedIndex].value;
 
-    // Keen.CohortBuilder.generateDateMatrix();
-    var dateMatrix = generateDateMatrix(units, intervals);
+    var dateMatrix = Keen.CohortBuilder.generateDateMatrix(units, intervals);
 
-    var queryMatrix = generateCohortQueryMatrix(dateMatrix, function(cohort){
+    var queryMatrix = Keen.CohortBuilder.generateCohortQueryMatrix(dateMatrix, function(cohort){
       return new Keen.Query('funnel', {
         steps: [
           {
@@ -110,10 +117,8 @@
       });
     });
 
-    // Start first chart spinner
-    cohortChart.prepare();
     // Keen.CohortBuilder.fetchCohortDatasets();
-    fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
+    Keen.CohortBuilder.fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
       cohortChart
         .data(dataset)
         .height(280)

@@ -1,7 +1,7 @@
-Cohort Matrix
-=============
+Cohort Builder
+==============
 
-Cohort Matrix, powered by the Keen IO Analysis and Dataviz SDKs
+Cohort Builder, powered by the Keen IO Analysis and Dataviz SDKs
 
 ![](http://f.cl.ly/items/2D2M3v1q0B312d2f2k09/preview.png)
 
@@ -12,16 +12,22 @@ Cohort Matrix, powered by the Keen IO Analysis and Dataviz SDKs
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
+    <!-- Cohort Builder relies on the Keen IO Dataviz SDK -->
     <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet">
-    <link href="keen-cohort-matrix.css" rel="stylesheet">
+
+    <!-- Cohort Builder CSS -->
+    <link href="keen-cohort-builder.css" rel="stylesheet">
   </head>
 <body>
   <div id="cohort-chart"></div>
   <div id="cohort-table"></div>
+
+  <!-- Cohort Builder relies on the Keen IO Dataviz SDK -->
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.1.0.js"></script>
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.js"></script>
-  <script src="keen-cohort-matrix.js"></script>
+
+  <!-- Cohort Builder JS -->
+  <script src="keen-cohort-builder.js"></script>
   <script>
     var keenClient = new Keen({
       projectId: 'YOUR_PROJECT_ID',
@@ -35,10 +41,11 @@ Cohort Matrix, powered by the Keen IO Analysis and Dataviz SDKs
 
     var cohortTable = new Keen.Dataviz()
       .el('#cohort-table')
+      .library('cohort-builder')
       .type('table');
 
-    var dateMatrix = generateDateMatrix('weeks', 5);
-    var queryMatrix = generateCohortQueryMatrix(dateMatrix, function(cohort){
+    var dateMatrix = Keen.CohortBuilder.generateDateMatrix('weeks', 5);
+    var queryMatrix = Keen.CohortBuilder.generateCohortQueryMatrix(dateMatrix, function(cohort){
       return new Keen.Query('funnel', {
         steps: [
           {
@@ -63,7 +70,7 @@ Cohort Matrix, powered by the Keen IO Analysis and Dataviz SDKs
 
     // Start first chart spinner
     cohortChart.prepare();
-    fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
+    Keen.CohortBuilder.fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
       cohortChart
         .data(dataset)
         .height(280)
