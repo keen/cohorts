@@ -3,7 +3,7 @@ Cohort Builder
 
 Cohort Builder, powered by the Keen IO Analysis and Dataviz SDKs
 
-![](https://raw.githubusercontent.com/keen/cohorts/master/docs/preview.png)
+![](https://raw.githubusercontent.com/keen/cohorts/master/docs/preview.png?token=AALA1mYWCYerp6rKA9Ydq9yF_hX1xB3Kks5YB9sMwA%3D%3D)
 
 ## Example usage
 
