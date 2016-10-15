@@ -6,10 +6,9 @@
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Raleway' />
   <link rel="stylesheet" href="./assets/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/keen-static.css" />
-  <link rel="stylesheet" href="./assets/keen-dashboards.css">
 
   <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
-  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet" />
+  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.4.css" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/keen-cohort-builder.css">
 </head>
 <body class="application">
@@ -64,7 +63,7 @@
   <div class="container-fluid">
     <h1>Cohort Builder</h1>
     <form class="form-inline" role="form">
-      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5" disabled="disabled" title="Disabled for demo purposes">
+      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5">
       <select id="select-step-units" class="form-control" disabled="disabled" title="Disabled for demo purposes">
         <option value="days">Days</option>
         <option value="weeks" selected="true">Weeks</option>
@@ -90,7 +89,7 @@
 
   <!-- Cohort Matrix relies on the Keen IO Analysis + Dataviz SDKs -->
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.1.0.js"></script>
-  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.js"></script>
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.4.js"></script>
   <script src="./assets/keen-cohort-builder.js"></script>
 
   <!-- Stub requests for demo purposes -->
