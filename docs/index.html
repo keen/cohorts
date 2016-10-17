@@ -37,9 +37,7 @@
         </div>
         <nav class="navbar-collapse collapse keen-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav main-nav">
-            <li><a href="https://keen.io">Home</a></li>
-            <li><a href="https://keen.io/team">Team</a></li>
-            <li><a href="https://github.com/keen/cohorts">Source</a></li>
+            <li><a href="https://github.com/keen/cohorts">Source Code</a></li>
             <li><a href="https://keen.chat">Chat Support</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -64,18 +62,26 @@
     <h1>Cohort Builder</h1>
     <form class="form-inline" role="form">
       <input id="select-step-intervals" type="number" class="form-control" min="5" max="10" value="5">
-      <select id="select-step-units" class="form-control" disabled="disabled" title="Disabled for demo purposes">
-        <option value="days">Days</option>
+      <select id="select-step-units" class="form-control">
+        <option value="days" disabled="disabled" >Days</option>
         <option value="weeks" selected="true">Weeks</option>
+        <option value="months" disabled="disabled">Months</option>
       </select>
       <div class="btn-group">
         <button type="button" id="build" class="btn btn-default">Build</button>
       </div>
     </form>
 
-    <!-- Target Dataviz Elements -->
-    <div id="new-chart-wrapper" class="demo-wrapper"></div>
-    <div id="new-table-wrapper" class="demo-wrapper"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Line chart</h3>
+        <div id="new-chart-wrapper" class="demo-wrapper"></div>
+      </div>
+      <div class="col-sm-6">
+        <h3>Heat map</h3>
+        <div id="new-table-wrapper" class="demo-wrapper"></div>
+      </div>
+    </div>
   </div>
 
   <div class="footer">
@@ -109,6 +115,7 @@
   var cohortTable = new Keen.Dataviz()
     .el('#new-table-wrapper')
     .library('cohort-builder')
+    .height(280)
     .type('matrix');
 
   var btn = document.getElementById('build');
@@ -117,7 +124,7 @@
 
     // Start first chart spinner
     cohortChart.prepare();
-    cohortTable.destroy();
+    cohortTable.prepare();
 
     // Intervals input field
     var intervalsInput = document.getElementById('select-step-intervals');
@@ -156,7 +163,6 @@
     Keen.CohortBuilder.fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
       cohortChart
         .data(dataset)
-        .height(280)
         .render();
 
       cohortTable
