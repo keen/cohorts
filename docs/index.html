@@ -6,7 +6,6 @@
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Raleway' />
   <link rel="stylesheet" href="./assets/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/keen-static.css" />
-  <link rel="stylesheet" href="./assets/keen-dashboards.css">
 
   <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
   <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet" />
@@ -38,19 +37,19 @@
         </div>
         <nav class="navbar-collapse collapse keen-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav main-nav">
-            <li><a href="https://keen.io">Home</a></li>
-            <li><a href="https://keen.io/team">Team</a></li>
-            <li><a href="https://github.com/keen/cohorts">Source</a></li>
-            <li><a href="https://keen.chat">Chat Support</a></li>
+            <li><a href="https://keen.io?s=open-source-cohort">Home</a></li>
+            <li><a href="https://keen.io/team?s=open-source-cohort">Team</a></li>
+            <li><a href="https://github.com/keen/cohorts?s=open-source-cohort">Source</a></li>
+            <li><a href="http://keen.chat?s=open-source-cohort">Chat Support</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://keen.io/signup?s=gh-cohorts" class="btn navbar-btn" target="_blank">Create a Free Project</a></li>
+            <li><a href="https://keen.io/signup?s=open-source-cohort" class="btn navbar-btn" target="_blank">Create a Free Project</a></li>
           </ul>
         </nav>
       </header>
 
       <h1>Cohorts by Keen IO</h1>
-      <p class="lead">Quickly build beautiful retention and cohort analyses</p>
+      <p class="lead">Quickly build and visualize beautiful cohort analyses</p>
       <a class="btn hero-btn" href="https://github.com/keen/cohorts" target="_blank">Source Code on Github</a>
 
       <iframe src="http://ghbtns.com/github-btn.html?user=keen&amp;repo=cohorts&amp;type=watch&amp;count=true"
@@ -60,7 +59,19 @@
 
     </div>
   </div>
-
+  <section class="announcement text-center" id="announcement-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+            <span class="label label-success">JUST LAUNCHED</span>
+            <strong>Check out of blog post for more info.</strong> This is the title of the blog post!
+            <a href="https://keen.io/?s=open-source-cohort" target="_blank"><strong>Here </strong><span class="icon icon-arrow-right"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="container-fluid">
     <h1>Cohort Builder</h1>
     <form class="form-inline" role="form">
@@ -78,7 +89,12 @@
     <div id="new-chart-wrapper" class="demo-wrapper"></div>
     <div id="new-table-wrapper" class="demo-wrapper"></div>
   </div>
-
+  <div class="copy">
+    <a href="https://keen.io?s=open-source-cohort"><img src="https://cdn.evbuc.com/eventlogos/155441537/transparentlogo.png" alt="keen-io" /></a>
+    <br><p>
+      Keen IO is an API for building analytics and reporting capabilities directly into your workflow, without having to build your own infrastructure. Learn more <a href="https://keen.io?s=open-source-cohort">here</a>.
+    </p>
+  </div>
   <div class="footer">
     <div class="container">
       <div class="love">
@@ -168,5 +184,11 @@
 
   btn.click();
   </script>
+
+  <!-- Analytics -->
+  <!-- Load Keen IO Tracking SDK -->
+  <script type="text/javascript" src="https://d26b395fwzu5fz.cloudfront.net/keen-tracking-1.0.3.min.js"></script>
+  <script src="./assets/keen-tracking.js"></script>
+
 </body>
 </html>
