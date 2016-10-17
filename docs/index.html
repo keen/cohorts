@@ -137,7 +137,6 @@
   btn.onclick = function(e) {
     e.preventDefault();
 
-    // Start first chart spinner
     cohortChart.prepare();
     cohortTable.prepare();
 
@@ -174,7 +173,6 @@
       });
     });
 
-    // Keen.CohortBuilder.fetchCohortDatasets();
     Keen.CohortBuilder.fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
       cohortChart
         .data(dataset)
