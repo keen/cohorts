@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./assets/keen-static.css" />
 
   <!-- Cohort Matrix relies on the Keen IO Dataviz SDK -->
-  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.css" rel="stylesheet" />
+  <link href="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.4.css" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/keen-cohort-builder.css">
 </head>
 <body class="application">
@@ -37,10 +37,9 @@
         </div>
         <nav class="navbar-collapse collapse keen-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav main-nav">
-            <li><a href="https://keen.io?s=open-source-cohort">Home</a></li>
-            <li><a href="https://keen.io/team?s=open-source-cohort">Team</a></li>
-            <li><a href="https://github.com/keen/cohorts?s=open-source-cohort">Source</a></li>
-            <li><a href="http://keen.chat?s=open-source-cohort">Chat Support</a></li>
+            <li><a href="https://github.com/keen/cohorts">Source Code</a></li>
+            <li><a href="https://keen.chat">Chat Support</a></li>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="https://keen.io/signup?s=open-source-cohort" class="btn navbar-btn" target="_blank">Create a Free Project</a></li>
@@ -59,35 +58,41 @@
 
     </div>
   </div>
+
   <section class="announcement text-center" id="announcement-banner">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p>
-            <span class="label label-success">JUST LAUNCHED</span>
-            <strong>Check out of blog post for more info.</strong> This is the title of the blog post!
-            <a href="https://keen.io/?s=open-source-cohort" target="_blank"><strong>Here </strong><span class="icon icon-arrow-right"></span></a>
-          </p>
-        </div>
-      </div>
+      <p>
+        <span class="label label-success">JUST LAUNCHED</span>
+        <strong>Check out of blog post for more info.</strong> This is the title of the blog post!
+        <a href="https://keen.io/?s=open-source-cohort" target="_blank"><strong>Here </strong><span class="icon icon-arrow-right"></span></a>
+      </p>
     </div>
   </section>
-  <div class="container-fluid">
+
+  <div class="container">
     <h1>Cohort Builder</h1>
     <form class="form-inline" role="form">
-      <input id="select-step-intervals" type="text" class="form-control" placeholder="#" value="5" disabled="disabled" title="Disabled for demo purposes">
-      <select id="select-step-units" class="form-control" disabled="disabled" title="Disabled for demo purposes">
-        <option value="days">Days</option>
+      <input id="select-step-intervals" type="number" class="form-control" min="5" max="10" value="5">
+      <select id="select-step-units" class="form-control">
+        <option value="days" disabled="disabled" >Days</option>
         <option value="weeks" selected="true">Weeks</option>
+        <option value="months" disabled="disabled">Months</option>
       </select>
       <div class="btn-group">
         <button type="button" id="build" class="btn btn-default">Build</button>
       </div>
     </form>
 
-    <!-- Target Dataviz Elements -->
-    <div id="new-chart-wrapper" class="demo-wrapper"></div>
-    <div id="new-table-wrapper" class="demo-wrapper"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Line chart</h3>
+        <div id="new-chart-wrapper" class="demo-wrapper"></div>
+      </div>
+      <div class="col-sm-6">
+        <h3>Heat map</h3>
+        <div id="new-table-wrapper" class="demo-wrapper"></div>
+      </div>
+    </div>
   </div>
   <div class="copy">
     <a href="https://keen.io?s=open-source-cohort"><img src="https://cdn.evbuc.com/eventlogos/155441537/transparentlogo.png" alt="keen-io" /></a>
@@ -106,7 +111,7 @@
 
   <!-- Cohort Matrix relies on the Keen IO Analysis + Dataviz SDKs -->
   <script src="https://d26b395fwzu5fz.cloudfront.net/keen-analysis-1.1.0.js"></script>
-  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.1.js"></script>
+  <script src="https://d26b395fwzu5fz.cloudfront.net/keen-dataviz-1.0.4.js"></script>
   <script src="./assets/keen-cohort-builder.js"></script>
 
   <!-- Stub requests for demo purposes -->
@@ -126,6 +131,7 @@
   var cohortTable = new Keen.Dataviz()
     .el('#new-table-wrapper')
     .library('cohort-builder')
+    .height(280)
     .type('matrix');
 
   var btn = document.getElementById('build');
@@ -134,7 +140,7 @@
 
     // Start first chart spinner
     cohortChart.prepare();
-    cohortTable.destroy();
+    cohortTable.prepare();
 
     // Intervals input field
     var intervalsInput = document.getElementById('select-step-intervals');
@@ -173,7 +179,6 @@
     Keen.CohortBuilder.fetchCohortDatasets(keenClient, queryMatrix, function(dataset) {
       cohortChart
         .data(dataset)
-        .height(280)
         .render();
 
       cohortTable
@@ -186,8 +191,6 @@
   </script>
 
   <!-- Analytics -->
-  <!-- Load Keen IO Tracking SDK -->
-  <script type="text/javascript" src="https://d26b395fwzu5fz.cloudfront.net/keen-tracking-1.0.3.min.js"></script>
   <script src="./assets/keen-tracking.js"></script>
 
 </body>

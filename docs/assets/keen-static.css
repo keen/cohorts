@@ -27,8 +27,8 @@ h3 {
 }
 
 .btn {
-  background: transparent;
-  border: 1px solid white;
+  /*background: transparent;*/
+  /*border: 1px solid white;*/
 }
 
 .keen-logo {
@@ -74,7 +74,7 @@ h3 {
 
 .masthead {
   background-color: #00afd7;
-  background-image: url("./img/bg-bars.png");
+  background-image: url("./img/bg-grid.png");
   background-position: 0 -290px;
   background-repeat: repeat-x;
   color: #fff;
@@ -107,7 +107,8 @@ h3 {
   margin: 120px 0 0;
 }
 .hero .lead {
-  margin-bottom: 32px;
+  font-weight: 200;
+  margin: 10px auto 32px;
 }
 .hero a.hero-btn {
   border: 2px solid #fff;
@@ -116,7 +117,7 @@ h3 {
   font-size: 24px;
   font-weight: 200;
   margin: 0 auto 12px;
-  padding: 12px 0 6px;
+  padding: 6px 0;
   width: 320px;
 }
 .hero a.hero-btn:focus,
@@ -149,4 +150,20 @@ h3 {
 
 .love p {
   margin-bottom: 0;
+}
+
+.demo-wrapper {
+  padding: 10px 0;
+}
+#announcement-banner {
+    padding: 10px 0 2px;
+}
+.announcement {
+    background: #f3f5f6;
+}
+.copy {
+  text-align:center;
+}
+.copy img {
+  height: 100px;
 }
