@@ -78,7 +78,7 @@ h3 {
   background-position: 0 -290px;
   background-repeat: repeat-x;
   color: #fff;
-  margin: 0 0 24px;
+  margin: 0 0 0px;
   padding: 20px 0;
 }
 .masthead h1 {
@@ -150,4 +150,20 @@ h3 {
 
 .love p {
   margin-bottom: 0;
+}
+
+.demo-wrapper {
+  padding: 10px 0;
+}
+#announcement-banner {
+    padding: 10px 0 2px;
+}
+.announcement {
+    background: #f3f5f6;
+}
+.copy {
+  text-align:center;
+}
+.copy img {
+  height: 100px;
 }
