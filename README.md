@@ -5,9 +5,9 @@ An attractive, custom cohort tool that can be used by your team or your customer
 
 Cohort Builder, powered by the Keen IO [Analysis](https://github.com/keen/keen-analysis.js) and [Dataviz](https://github.com/keen/keen-dataviz.js) SDKs
 
-![](https://raw.githubusercontent.com/keen/cohorts/master/docs/preview.png?token=AALA1mYWCYerp6rKA9Ydq9yF_hX1xB3Kks5YB9sMwA%3D%3D)
-
 To see the Keen integration in action, create a [free project](http://keen.io/signup?s=gh-cohorts) and send some data to it. Then create some charts with just a few lines of code. You chould even use our [OSS Dashboards](https://github.com/keen/dashboards) if you want to get extra fancy!
+
+![](https://raw.githubusercontent.com/keen/cohorts/master/docs/preview.png?token=AALA1mYWCYerp6rKA9Ydq9yF_hX1xB3Kks5YB9sMwA%3D%3D)
 
 ## Example usage
 
