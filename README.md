@@ -1,7 +1,7 @@
 Cohort Builder
 ==============
 
-An attractive, custom cohort tool that's can be used by your team or your customers. Running this analysis means juggling a lot of complex queries and timeframes. This tool makes that super easy, and in doing so opens up one of the most powerful, valuable types of analysis to be built right into a product.
+An attractive, custom cohort tool that can be used by your team or your customers. Running this analysis means juggling a lot of complex queries and timeframes. This tool makes that super easy, and in doing so opens up one of the most powerful, valuable types of analysis to be built right into a product.
 
 Cohort Builder, powered by the Keen IO [Analysis](https://github.com/keen/keen-analysis.js) and [Dataviz](https://github.com/keen/keen-dataviz.js) SDKs
 
