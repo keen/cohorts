@@ -1,14 +1,11 @@
 (function(env){
-  // var SEED_INC_BASE = 30,
-  //     SEED_INC_MIN = 7,
-  //     SEED_INC_MAX = 12;
-
   // Stub request mechanism, for demo purposes
   env.Keen.CohortBuilder.fetchCohortDatasets = function(client, cohorts, callback) {
     var ds = new env.Keen.Dataset();
 
     ds.matrix = [
       [ 'Cohort joined ']
+      // Example:
       // [ 'Cohort', '5 weeks ago', '4 weeks ago', '3 weeks ago', '2 weeks ago', '1 week ago' ],
       // [ 'Week 1', 35.5, 43.1, 55.1, 66.4, 78.3 ],
       // [ 'Week 2', 25.3, 38.2, 43.3, 54.0, null ],
@@ -44,22 +41,5 @@
       callback(ds);
     }, 1000);
   }
-
-  // function rand(a, b){
-  //   return Math.floor((Math.random() * b) + a);
-  // }
-  //
-  // function gen(num, max) {
-  //   var arr = [];
-  //   for (var i = 0; i < max; i++) {
-  //     if (i < num) {
-  //       arr.push(rand(SEED_INC_MIN, SEED_INC_MAX) * (i+1) + SEED_INC_BASE);
-  //     }
-  //     else {
-  //       arr.push(null);
-  //     }
-  //   }
-  //   return arr;
-  // }
 
 }).call(this, typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {});
