@@ -144,7 +144,7 @@
               if (j === 0) {
                 html += '<td>' + decodeURIComponent(data[i][j]) + '</td>';
               }
-              else if (typeof data[i][j] === 'number') {
+              else if (isFinite(data[i][j])) {
                 var percent = Number(decodeURIComponent(data[i][j]));
                 html += '<td style="background-color: rgba(0, 175, 215, ' + (percent / 100) + ');">' + percent.toFixed(2) + '%' + '</td>';
               }
@@ -186,7 +186,7 @@
               if (j === 0) {
                 html += '<td>' + decodeURIComponent(reverseSeries[j]) + '</td>';
               }
-              else if (typeof reverseSeries[j] === 'number') {
+              else if (isFinite(reverseSeries[j])) {
                 var percent = Number(decodeURIComponent(reverseSeries[j]));
                 html += '<td style="background-color: rgba(0, 175, 215, ' + (percent / 100) + ');">' + percent.toFixed(2) + '%' + '</td>';
               }
